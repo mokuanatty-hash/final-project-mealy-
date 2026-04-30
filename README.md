@@ -39,18 +39,6 @@ Mealy is a full-stack food ordering application that allows customers to make fo
 
 ---
 
-## Phase 5 Project Requirements Checklist
-- [x] Flask and SQLAlchemy backend
-- [x] Many-to-many relationship (e.g., users <-> orders <-> meals)
-- [x] At least 4 models (User, Meal, Menu, Order)
-- [x] At least 5 client-side routes using React Router
-- [x] Full CRUD on at least 1 model (meals, orders, or menu), following REST conventions
-- [x] Validations and error handling
-- [x] Something new not taught in the curriculum (e.g., persistent file storage, notifications, or advanced UI/UX)
-- [x] useContext or Redux for state management
-
----
-
 ## Organization & Tools
 - **Kanban/Scrum Board:** [GitHub Project Board](https://github.com/Tobikorais/Mealy/projects)
 - **Pomodoro Timer:** [Marinara Timer](https://marinara-timer.com/)

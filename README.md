@@ -191,7 +191,8 @@ If you still have issues, let me know what you see in the Network tab after tryi
 ---
 
 **Reference:**  
-- [https://mealy-steel.vercel.app/]([(https://mealy-464v.vercel.app/))
+- https://mealy-464v.vercel.app/
+- 
 
 ---
 

@@ -8,11 +8,16 @@ import requests
 from datetime import datetime
 
 app = Flask(__name__)
-CORS(app, origins=[
-    "http://localhost:8080",
-    "http://localhost:8082",
-    "https://mealy-464v.vercel.app"
-])
+# Allow frontend access during development and deployment.
+CORS(app)
+
+@app.route("/", methods=["GET"])
+def health_check():
+    return jsonify({"status": "ok", "message": "Mealy backend is running."})
+
+@app.route("/api", methods=["GET"])
+def api_info():
+    return jsonify({"status": "ok", "endpoints": ["/api/meals", "/api/signup", "/api/auth", "/api/orders"]})
 
 # In-memory data for demo   
 users = [
@@ -126,17 +131,30 @@ def mpesa_stkpush():
 
 @app.route("/api/signup", methods=["POST"])
 def signup():
-    data = request.json
+    data = request.get_json()
+
+    if not data:
+        return jsonify({"error": "No data received"}), 400
+
     username = data.get("username")
     password = data.get("password")
     user_type = data.get("type", "customer")
+
     if not username or not password:
         return jsonify({"error": "Username and password required"}), 400
+
     if any(u["username"] == username for u in users):
         return jsonify({"error": "Username already exists"}), 409
+
     if user_type not in ["admin", "customer"]:
         user_type = "customer"
-    users.append({"username": username, "password": password, "type": user_type})
+
+    users.append({
+        "username": username,
+        "password": password,
+        "type": user_type
+    })
+
     return jsonify({"message": "Signup successful", "type": user_type}), 201
 
 @app.route("/api/auth", methods=["POST"])

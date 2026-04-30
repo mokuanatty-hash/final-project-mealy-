@@ -1,15 +1,7 @@
-from flask import Flask, jsonify, request
-from flask_cors import CORS
-import time
-
-app = Flask(__name__)
-CORS(app)
-
-# In-memory data for demo purposes
-users = [
-    {"username": "admin", "password": "admin", "type": "admin"},
-    {"username": "customer", "password": "customer", "type": "customer"},
-]
+Flask==3.0.0
+Flask-CORS==4.0.0
+requests==2.31.0
+gunicorn==21.2.0
 
 meals = [
     # ... (your meals data as before)

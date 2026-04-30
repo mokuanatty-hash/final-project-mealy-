@@ -328,7 +328,38 @@ Then redeploy or restart your backend.
 
 ---
 
-## 6. **If You Want Me to Make the Code Changes**
+## 6. **Deploying the App**
+
+This repo can be deployed as two connected services:
+
+1. **Backend**: Flask API
+2. **Frontend**: React app built with Vite
+
+### Recommended setup
+- Deploy the backend to Render, Heroku, Railway, or another Python host.
+- Deploy the frontend to Vercel, Netlify, or Render static site.
+- Set `VITE_API_URL` in the frontend environment to the backend URL.
+
+### Ready-to-use config
+I added `render.yaml` and `vercel.json` so the repo is ready for deployment.
+
+- `render.yaml` defines a backend service and a frontend static site.
+- `vercel.json` lets Vercel build the frontend correctly.
+
+### What to set after backend deploys
+- Backend URL: e.g. `https://mealy-backend.onrender.com`
+- Frontend env var: `VITE_API_URL=https://mealy-backend.onrender.com`
+
+### Quick deploy flow
+- Push this repo to GitHub
+- Create a Render app or a Heroku app for the backend
+- Create a Vercel site for the frontend
+- Configure the frontend with `VITE_API_URL`
+- Redeploy both
+
+---
+
+## 7. **If You Want Me to Make the Code Changes**
 
 If you paste your backend URL here (e.g., `https://mealy-backend.onrender.com`), I can:
 - Edit your React code to use the environment variable everywhere.
@@ -338,7 +369,7 @@ If you paste your backend URL here (e.g., `https://mealy-backend.onrender.com`),
 
 **Summary:**  
 - Use `VITE_API_URL` in your React code for all backend calls.
-- Set `VITE_API_URL` in Vercel to your backend’s deployed URL.
+- Set `VITE_API_URL` in your frontend deployment to your backend URL.
 - Allow CORS from your frontend domain in Flask.
 - Redeploy both frontend and backend.
 

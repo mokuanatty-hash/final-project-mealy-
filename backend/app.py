@@ -7,7 +7,7 @@ import json
 app = Flask(__name__)
 CORS(app)
 
-# In-memory data for demo
+# In-memory data for demo  
 users = [
     {"username": "admin", "password": "admin", "type": "admin"},
     {"username": "customer", "password": "customer", "type": "customer"},

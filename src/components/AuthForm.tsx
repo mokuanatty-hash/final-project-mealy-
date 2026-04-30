@@ -26,7 +26,8 @@ export function AuthForm({ onAuthSuccess }: AuthFormProps) {
     const username = formData.get("username") as string;
     const password = formData.get("password") as string;
     try {
-      const res = await axios.post("http://localhost:5000/api/auth", {
+      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+      const res = await axios.post(`${API_URL}/api/auth`, {
         username,
         password
       });
@@ -51,7 +52,8 @@ export function AuthForm({ onAuthSuccess }: AuthFormProps) {
     const username = formData.get("username-signup") as string;
     const password = formData.get("password-signup") as string;
     try {
-      const res = await axios.post("http://localhost:5000/api/signup", {
+      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+      const res = await axios.post(`${API_URL}/api/signup`, {
         username,
         password,
         type: signupType

@@ -68,9 +68,11 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
   });
   const [orders, setOrders] = useState([]);
 
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
   useEffect(() => {
-    axios.get("http://localhost:5000/api/meals").then(res => setMeals(res.data));
-    axios.get("http://localhost:5000/api/orders").then(res => setOrders(res.data));
+    axios.get(`${API_URL}/api/meals`).then(res => setMeals(res.data));
+    axios.get(`${API_URL}/api/orders`).then(res => setOrders(res.data));
   }, []);
 
   const totalRevenue = orders.reduce((sum, order) => sum + order.price, 0);
@@ -85,7 +87,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
       return;
     }
     try {
-      const res = await axios.post("http://localhost:5000/api/meals", {
+      const res = await axios.post(`${API_URL}/api/meals`, {
         name: newMeal.name,
         description: newMeal.description,
         price: newMeal.price,

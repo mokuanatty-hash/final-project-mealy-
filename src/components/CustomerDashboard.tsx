@@ -58,8 +58,10 @@ export function CustomerDashboard({ onLogout }: CustomerDashboardProps) {
   const [deliveryDate, setDeliveryDate] = useState("");
   const [deliveryTime, setDeliveryTime] = useState("");
 
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
   useEffect(() => {
-    axios.get("http://localhost:5000/api/meals").then(res => setMeals(res.data));
+    axios.get(`${API_URL}/api/meals`).then(res => setMeals(res.data));
   }, []);
 
   const handleOrderMeal = async (mealId: number, mealName: string) => {
@@ -72,7 +74,7 @@ export function CustomerDashboard({ onLogout }: CustomerDashboardProps) {
       return;
     }
     try {
-      await axios.post("http://localhost:5000/api/orders", {
+      await axios.post(`${API_URL}/api/orders`, {
         customerName: "Customer", // You can replace with actual user info if available
         meal: mealName,
         price: meals.find((m: any) => m.id === mealId)?.price || 0,

@@ -53,5 +53,69 @@
     "time": "09:29 PM",
     "delivery_time": "21:00",
     "delivery_date": "2025-07-24"
+  },
+  {
+    "id": 8,
+    "customerName": "Customer",
+    "meal": "Grilled Chicken Bowl",
+    "price": 15.99,
+    "time": "10:25 AM",
+    "delivery_time": "01:28",
+    "delivery_date": "2025-07-26"
+  },
+  {
+    "id": 9,
+    "customerName": "Customer",
+    "meal": "Grilled Chicken Bowl",
+    "price": 15.99,
+    "time": "10:41 AM",
+    "delivery_time": "01:44",
+    "delivery_date": "2025-07-17"
+  },
+  {
+    "id": 10,
+    "customerName": "Customer",
+    "meal": "Mediterranean Salmon",
+    "price": 18.99,
+    "time": "09:27 AM",
+    "delivery_time": "10:27",
+    "delivery_date": "2025-07-15"
+  },
+  {
+    "id": 11,
+    "customerName": "Customer",
+    "meal": "pizza",
+    "price": 12.0,
+    "time": "10:04 AM",
+    "delivery_time": "11:06",
+    "delivery_date": "2025-07-23"
+  },
+  {
+    "id": 12,
+    "customerName": "Customer",
+    "meal": "Grilled Chicken Bowl",
+    "price": 15.99,
+    "time": "10:17 AM",
+    "delivery_time": "00:06",
+    "delivery_date": "2025-07-30",
+    "delivery_location": "Ngong",
+    "delivery_house_number": "faulu",
+    "delivery_phone": "0708288623",
+    "delivery_notes": "house number 4b",
+    "status": "delivered"
+  },
+  {
+    "id": 13,
+    "customerName": "Customer",
+    "meal": "Mediterranean Salmon",
+    "price": 18.99,
+    "time": "10:33 AM",
+    "delivery_time": "00:18",
+    "delivery_date": "2025-07-31",
+    "delivery_location": "cbd",
+    "delivery_house_number": "afya center",
+    "delivery_phone": "0722824305",
+    "delivery_notes": "store number B24",
+    "status": "delivered"
   }
 ]

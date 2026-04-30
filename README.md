@@ -1,14 +1,10 @@
-# Mealy (Group 4)
+# Final Project
 
 ## Project Overview
-Mealy is a full-stack food ordering application that allows customers to make food orders and helps food vendors (caterers/admins) manage menus and track orders. This project demonstrates advanced skills in React (frontend), Flask (backend), and PostgreSQL (database), and is designed as a capstone for the Phase 5 curriculum.
+Mealy is a solo full-stack food ordering application built and maintained by Natalie Mokua. It allows customers to place food orders and helps food vendors (caterers/admins) manage menus and track orders. This individual project demonstrates advanced skills in React (frontend), Flask (backend), and PostgreSQL (database), and is designed as a capstone for the Phase 5 curriculum.
 
-## Project Team & Responsibilities
-- **Laetitia Kamangu (Scrum Master):** Project management, sprint planning, and team coordination
-- **Lawrence Wambugu:** Frontend development (React, UI/UX, customer dashboard)
-- **Andrew Tobiko:** Backend development (Flask API, authentication, order persistence)
-- **George Mbugua:** Admin dashboard, order management, and integration
-- **Lee Thuku:** Testing, documentation, and deployment
+## Project Owner
+- **Natalie Mokua:** Sole owner and developer for all aspects of the project, including frontend, backend, testing, documentation, and deployment.
 
 ---
 
@@ -40,7 +36,7 @@ Mealy is a full-stack food ordering application that allows customers to make fo
 ---
 
 ## Organization & Tools
-- **Kanban/Scrum Board:** [GitHub Project Board](https://github.com/Tobikorais/Mealy/projects)
+- **Project Board:** [GitHub Project Board](https://github.com/Tobikorais/Mealy/projects)
 - **Pomodoro Timer:** [Marinara Timer](https://marinara-timer.com/)
 
 ---
@@ -71,7 +67,7 @@ Mealy is a full-stack food ordering application that allows customers to make fo
 ---
 
 ## About
-This project is a capstone for the Phase 5 curriculum, demonstrating full-stack development, teamwork, and advanced technical skills.
+This project is a capstone for the Phase 5 curriculum, demonstrating full-stack development, individual ownership, and advanced technical skills.
 
 ---
 

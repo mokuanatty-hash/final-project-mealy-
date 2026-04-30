@@ -8,6 +8,7 @@ CORS(app)
 # In-memory data for demo purposes
 users = [
     {"username": "admin", "password": "admin", "type": "admin"},
+
     {"username": "customer", "password": "customer", "type": "customer"},
 ]
 

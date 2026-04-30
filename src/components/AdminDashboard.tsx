@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -19,6 +19,7 @@ import {
   LogOut,
   Users
 } from "lucide-react";
+import axios from "axios";
 
 interface AdminDashboardProps {
   onLogout: () => void;
@@ -57,7 +58,7 @@ const todaysOrders = [
 ];
 
 export function AdminDashboard({ onLogout }: AdminDashboardProps) {
-  const [meals, setMeals] = useState(initialMeals);
+  const [meals, setMeals] = useState([]);
   const [isAddingMeal, setIsAddingMeal] = useState(false);
   const [newMeal, setNewMeal] = useState({
     name: "",
@@ -66,9 +67,13 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
     category: ""
   });
 
+  useEffect(() => {
+    axios.get("http://localhost:5000/api/meals").then(res => setMeals(res.data));
+  }, []);
+
   const totalRevenue = todaysOrders.reduce((sum, order) => sum + order.price, 0);
 
-  const handleAddMeal = () => {
+  const handleAddMeal = async () => {
     if (!newMeal.name || !newMeal.price) {
       toast({
         title: "Error",
@@ -77,23 +82,27 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
       });
       return;
     }
-
-    const meal = {
-      id: meals.length + 1,
-      name: newMeal.name,
-      description: newMeal.description,
-      price: parseFloat(newMeal.price),
-      category: newMeal.category || "General"
-    };
-
-    setMeals([...meals, meal]);
-    setNewMeal({ name: "", description: "", price: "", category: "" });
-    setIsAddingMeal(false);
-    
-    toast({
-      title: "Meal Added! 🍽️",
-      description: `${meal.name} has been added to your menu.`,
-    });
+    try {
+      const res = await axios.post("http://localhost:5000/api/meals", {
+        name: newMeal.name,
+        description: newMeal.description,
+        price: newMeal.price,
+        category: newMeal.category
+      });
+      setMeals([...meals, res.data]);
+      setNewMeal({ name: "", description: "", price: "", category: "" });
+      setIsAddingMeal(false);
+      toast({
+        title: "Meal Added! 🍽️",
+        description: `${res.data.name} has been added to your menu.`,
+      });
+    } catch (err) {
+      toast({
+        title: "Error",
+        description: "Failed to add meal.",
+        variant: "destructive"
+      });
+    }
   };
 
   const handleDeleteMeal = (id: number, name: string) => {

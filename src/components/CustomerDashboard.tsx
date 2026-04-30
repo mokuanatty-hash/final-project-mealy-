@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "@/hooks/use-toast";
 import { Clock, Star, ShoppingCart, User, LogOut } from "lucide-react";
 import heroMeal from "@/assets/hero-meal.jpg";
+import axios from "axios";
 
 interface CustomerDashboardProps {
   onLogout: () => void;
@@ -53,14 +54,44 @@ const todaysMenu = [
 export function CustomerDashboard({ onLogout }: CustomerDashboardProps) {
   const [selectedMeal, setSelectedMeal] = useState<number | null>(null);
   const [orderPlaced, setOrderPlaced] = useState(false);
+  const [meals, setMeals] = useState([]);
+  const [deliveryDate, setDeliveryDate] = useState("");
+  const [deliveryTime, setDeliveryTime] = useState("");
 
-  const handleOrderMeal = (mealId: number, mealName: string) => {
-    setSelectedMeal(mealId);
-    setOrderPlaced(true);
-    toast({
-      title: "Order Placed! 🎉",
-      description: `Your order for ${mealName} has been confirmed.`,
-    });
+  useEffect(() => {
+    axios.get("http://localhost:5000/api/meals").then(res => setMeals(res.data));
+  }, []);
+
+  const handleOrderMeal = async (mealId: number, mealName: string) => {
+    if (!deliveryDate || !deliveryTime) {
+      toast({
+        title: "Missing Info",
+        description: "Please select delivery date and time.",
+        variant: "destructive"
+      });
+      return;
+    }
+    try {
+      await axios.post("http://localhost:5000/api/orders", {
+        customerName: "Customer", // You can replace with actual user info if available
+        meal: mealName,
+        price: meals.find((m: any) => m.id === mealId)?.price || 0,
+        delivery_date: deliveryDate,
+        delivery_time: deliveryTime
+      });
+      setSelectedMeal(mealId);
+      setOrderPlaced(true);
+      toast({
+        title: "Order Placed! 🎉",
+        description: `Your order for ${mealName} has been confirmed.`,
+      });
+    } catch (err) {
+      toast({
+        title: "Order Failed",
+        description: "Could not place order. Please try again.",
+        variant: "destructive"
+      });
+    }
   };
 
   const handleChangeOrder = () => {
@@ -116,6 +147,18 @@ export function CustomerDashboard({ onLogout }: CustomerDashboardProps) {
           </div>
         </div>
 
+        {/* Delivery Date/Time Form */}
+        <div className="mb-8 flex flex-col md:flex-row gap-4 items-center">
+          <div>
+            <label className="block mb-1 font-medium">Delivery Date</label>
+            <input type="date" value={deliveryDate} onChange={e => setDeliveryDate(e.target.value)} className="border rounded px-2 py-1" />
+          </div>
+          <div>
+            <label className="block mb-1 font-medium">Delivery Time</label>
+            <input type="time" value={deliveryTime} onChange={e => setDeliveryTime(e.target.value)} className="border rounded px-2 py-1" />
+          </div>
+        </div>
+
         {/* Order Status */}
         {orderPlaced && selectedMeal && (
           <Card className="mb-8 border-fresh bg-fresh/5">
@@ -147,7 +190,7 @@ export function CustomerDashboard({ onLogout }: CustomerDashboardProps) {
 
         {/* Menu Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {todaysMenu.map((meal) => (
+          {meals.map((meal) => (
             <Card 
               key={meal.id} 
               className={`transition-all duration-200 hover:shadow-appetizing ${

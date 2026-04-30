@@ -20,7 +20,7 @@ export function AuthForm({ onAuthSuccess }: AuthFormProps) {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
-    // Get form data
+    // Get form 
     const form = e.target as HTMLFormElement;
     const formData = new FormData(form);
     const username = formData.get("username") as string;

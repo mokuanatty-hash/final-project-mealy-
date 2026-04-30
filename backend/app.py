@@ -8,7 +8,12 @@ import requests
 from datetime import datetime
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:8080", "http://localhost:8082"])
+CORS(app, origins=[
+    "http://localhost:8080", 
+    "http://localhost:8082",
+    "https://mealy-frontend.vercel.app",
+    "https://mealy-frontend-git-main-tobikorais.vercel.app"
+])
 
 # In-memory data for demo   
 users = [

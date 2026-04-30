@@ -24,7 +24,7 @@ import axios from "axios";
 interface AdminDashboardProps {
   onLogout: () => void;
 }
-
+ 
 
 const initialMeals = [
   {
